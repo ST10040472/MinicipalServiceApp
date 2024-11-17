@@ -65,7 +65,7 @@ ________________________________________
 Downloading and Running the Application
 1.	Download the Repository:
 o	Visit the GitHub repository 
-o	Click on the Code button and select Download ZIP or use (git clone https://github.com/ST10040472/MinicipalServiceApp.git) in your terminal.
+o	Click on the Code button and select Download ZIP or use (git clone https://github.com/ST10040472/MunicipalServiceApp.git) in your terminal.
 2.	Compile and Run in Visual Studio:
 o	Step 1: Open Visual Studio and click Open a Project or Solution.
 o	Step 2: Navigate to the downloaded repository folder and open the .sln file.
