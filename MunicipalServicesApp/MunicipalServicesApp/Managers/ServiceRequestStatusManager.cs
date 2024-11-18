@@ -19,6 +19,8 @@ namespace MunicipalServicesApp.Managers
             _priorityQueue = new PriorityQueue(); // Initialize PriorityQueue
         }
 
+
+        // Add sample requests to the AVL Tree and Priority Queue
         public void AddSampleRequests()
         {
             var sampleRequests = new List<ServiceRequest>
@@ -80,6 +82,8 @@ namespace MunicipalServicesApp.Managers
             dependencyGraph.AddDependency(20, 17);
         }
 
+
+        //Fetech all requests in the AVL Tree
         public List<ServiceRequest> GetAllRequests()
         {
             return serviceRequestsTree.InOrderTraversal();
@@ -96,16 +100,19 @@ namespace MunicipalServicesApp.Managers
             return sortedRequests;
         }
 
+        //Find a request by ID
         public ServiceRequest FindRequestById(int requestId)
         {
             return serviceRequestsTree.InOrderTraversal().FirstOrDefault(r => r.RequestID == requestId);
         }
 
+        //get all dependencies of a request
         public List<int> GetDependencies(int requestId)
         {
             return dependencyGraph.GetDependencies(requestId);
         }
 
+        //get all requests with dependencies
         public List<ServiceRequest> GetRequestsWithDependencies()
         {
             return dependencyGraph.GetAllRequests();
@@ -125,6 +132,8 @@ namespace MunicipalServicesApp.Managers
             }).ToList();
         }
 
+
+        // Filter requests with dependencies using priority and status filters
         public List<ServiceRequest> FilterGraphRequests(string statusFilter, string priorityFilter)
         {
             var filteredRequests = FilterRequests(statusFilter, priorityFilter);

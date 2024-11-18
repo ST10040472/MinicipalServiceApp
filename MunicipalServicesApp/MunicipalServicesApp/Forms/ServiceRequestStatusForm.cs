@@ -25,11 +25,14 @@ namespace MunicipalServicesApp.Forms
             dependenciesTreeView.Invalidate();
         }
 
+
+        //Populates the list view with all service requests using method PopulateListView
         private void LoadAllRequests()
         {
             PopulateListView(manager.GetAllRequests());
         }
 
+        //searches for a service request by ID
         private void SearchButton_Click(object sender, EventArgs e)
         {
             int searchId;
@@ -51,6 +54,7 @@ namespace MunicipalServicesApp.Forms
             }
         }
 
+        //Populates the list view with all service requests using method from manager
         private void PopulateListView(List<ServiceRequest> serviceRequests)
         {
             serviceRequestListView.Items.Clear();
@@ -75,6 +79,7 @@ namespace MunicipalServicesApp.Forms
             }
         }
 
+        //fetches the dependencies of a service request and sets graph properties
         private void dependenciesTreeView_Paint(object sender, PaintEventArgs e)
         {
             var graphics = e.Graphics;
@@ -108,6 +113,7 @@ namespace MunicipalServicesApp.Forms
             }
         }
 
+        //draws the dependency graph of service requests
         private void DrawRequestAndDependencies(Graphics graphics, ServiceRequest request, float x, float y, int nodeSize, int xSpacing, int ySpacing, Dictionary<int, PointF> positions, HashSet<int> processed, Font font, Pen pen)
         {
             if (processed.Contains(request.RequestID))
@@ -173,7 +179,7 @@ namespace MunicipalServicesApp.Forms
 
 
 
-
+        //Event handlers for zooming the graph
         private void dependenciesTreeView_MouseWheel(object sender, MouseEventArgs e)
         {
             const float zoomStep = 0.1f;
@@ -189,6 +195,7 @@ namespace MunicipalServicesApp.Forms
             dependenciesTreeView.Invalidate(); // Redraw the view
         }
 
+        //Event handlers for panning the graph
         private void dependenciesTreeView_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -197,6 +204,7 @@ namespace MunicipalServicesApp.Forms
             }
         }
 
+        //Event handlers for panning the graph
         private void dependenciesTreeView_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -213,6 +221,7 @@ namespace MunicipalServicesApp.Forms
             }
         }
 
+        //Event handlers for displaying service request details
         private void dependenciesTreeView_MouseClick(object sender, MouseEventArgs e)
         {
             var clickedX = (e.X - offset.X) / zoomFactor;
@@ -238,13 +247,14 @@ namespace MunicipalServicesApp.Forms
         }
 
 
-
+        //Filtering the graph and list view
         private void btnFilterGraph_Click(object sender, EventArgs e)
         {
             groupBoxFilterEvents.Visible = !groupBoxFilterEvents.Visible;
             btnFilterGraph.Text = groupBoxFilterEvents.Visible ? "Hide Filters" : "Show Filters";
         }
 
+        //Applying the filter to the graph and list view
         private void btnApplyFilterRequests_Click(object sender, EventArgs e)
         {
             string selectedStatus = statusFilterComboBox.SelectedItem?.ToString() ?? string.Empty;
@@ -261,6 +271,7 @@ namespace MunicipalServicesApp.Forms
             btnFilterGraph.Text = groupBoxFilterEvents.Visible ? "Hide Filters" : "Show Filters";
         }
 
+        //Displaying the service requests in priority order
         private void DisplayRequestsInPriorityOrder()
         {
             serviceRequestListView.Items.Clear();
@@ -279,6 +290,7 @@ namespace MunicipalServicesApp.Forms
             }
         }
 
+        //Event handler for sorting the service requests by priority
         private void chckBxSortPriority_CheckedChanged(object sender, EventArgs e)
         {
             if (chckBxSortPriority.Checked)

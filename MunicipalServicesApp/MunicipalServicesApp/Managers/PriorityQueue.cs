@@ -12,12 +12,15 @@ public class PriorityQueue
 
     public int Count => _heap.Count; // Count property to get the number of elements in the queue.
 
+
+    // Enqueue method to add a new service request to the queue.
     public void Enqueue(ServiceRequest request)
     {
         _heap.Add(request);
         HeapifyUp(_heap.Count - 1);
     }
 
+    // Dequeue method to remove and return the service request with the highest priority.
     public ServiceRequest Dequeue()
     {
         if (_heap.Count == 0) return null;
@@ -30,6 +33,7 @@ public class PriorityQueue
         return top;
     }
 
+    // Peek method to return the service request with the highest priority without removing it from the queue.
     private void HeapifyUp(int index)
     {
         while (index > 0)
@@ -42,6 +46,7 @@ public class PriorityQueue
         }
     }
 
+    // Helper method to maintain the heap property by moving the element down the heap.
     private void HeapifyDown(int index)
     {
         int lastIndex = _heap.Count - 1;
@@ -65,6 +70,8 @@ public class PriorityQueue
         }
     }
 
+
+    // Helper method to swap two elements in the heap.
     private void Swap(int i, int j)
     {
         var temp = _heap[i];

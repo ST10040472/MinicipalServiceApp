@@ -3,7 +3,7 @@ using System;
 
 namespace MunicipalServicesApp.Models
 {
-    public class ServiceRequest : IComparable<ServiceRequest>
+    public class ServiceRequest : IComparable<ServiceRequest> 
     {
         public int RequestID { get; set; }
         public string Description { get; set; }
@@ -11,6 +11,7 @@ namespace MunicipalServicesApp.Models
         public int Priority { get; set; }
         public List<int> Dependencies { get; set; }
 
+        // Constructor
         public ServiceRequest(int requestId, string description, string status, int priority, List<int> dependencies = null)
         {
             RequestID = requestId;
@@ -20,6 +21,7 @@ namespace MunicipalServicesApp.Models
             Dependencies = dependencies ?? new List<int>();
         }
 
+        //
         public int CompareTo(ServiceRequest other)
         {
             if (other == null) return 1;
